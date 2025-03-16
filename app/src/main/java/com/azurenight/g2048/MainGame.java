@@ -1,4 +1,4 @@
-package com.azurenight.a2048;
+package com.azurenight.g2048;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -29,21 +28,21 @@ public class MainGame
     private static final int GAME_WIN = 1;
     private static final int GAME_LOST = -1;
     private static final int GAME_NORMAL = 0;
-    public int gameState = GAME_NORMAL;
-    public int lastGameState = GAME_NORMAL;
-    private int bufferGameState = GAME_NORMAL;
     private static final int GAME_ENDLESS = 2;
     private static final int GAME_ENDLESS_WON = 3;
     private static final String HIGH_SCORE = "high score";
     private static int endingMaxValue;
     private final Context mContext;
     private final MainView mView;
+    public int gameState = GAME_NORMAL;
+    public int lastGameState = GAME_NORMAL;
     public Grid grid = null;
     public AnimationGrid aGrid;
     public boolean canUndo;
     public long score = 0;
     public long highScore = 0;
     public long lastScore = 0;
+    private int bufferGameState = GAME_NORMAL;
     private long bufferScore = 0;
 
     public MainGame(Context context, MainView view)

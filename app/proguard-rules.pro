@@ -1,3 +1,2 @@
--keep public class ir.adad.client.** {
-   *;
-}
+-keepattributes LineNumberTable,SourceFile
+-renamesourcefileattribute SourceFile

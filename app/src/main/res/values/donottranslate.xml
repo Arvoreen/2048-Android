@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Market URLs -->
-    <string name="url_cafe_bazaar" translatable="false">https://cafebazaar.ir/app/com.gameditors.a2048</string>
-    <string name="url_cafe_bazzar_developer" translatable="false">https://cafebazaar.ir/developer/scientist_studio</string>
-    <string name="url_google_play" translatable="false">https://play.google.com/store/apps/details?id=com.gameditors.a2048</string>
+    <string name="url_google_play" translatable="false">https://play.google.com/store/apps/details?id=</string>
 
     <string name="instagram_package_name" ranslatable="false" translatable="false">com.instagram.android</string>
     <string name="instagram_page_uri" ranslatable="false" translatable="false">https://www.instagram.com/gameditors/</string>

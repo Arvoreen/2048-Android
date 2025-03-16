@@ -9,27 +9,27 @@ Save this file as res/values/games-ids.xml in your project.
   <!-- package_name -->
   <string name="package_name" translatable="false">com.azurenight.g2048</string>
   <!-- achievement 32 -->
-  <string name="achievement_32" translatable="false">CgkIrrqv64sDEAIQBA</string>
-  <!-- achievement 64 -->
-  <string name="achievement_64" translatable="false">CgkIrrqv64sDEAIQBQ</string>
-  <!-- achievement 128 -->
-  <string name="achievement_128" translatable="false">CgkIrrqv64sDEAIQBg</string>
-  <!-- achievement 256 -->
-  <string name="achievement_256" translatable="false">CgkIrrqv64sDEAIQBw</string>
-  <!-- achievement 512 -->
-  <string name="achievement_512" translatable="false">CgkIrrqv64sDEAIQCA</string>
-  <!-- achievement 1024 -->
-  <string name="achievement_1024" translatable="false">CgkIrrqv64sDEAIQCQ</string>
-  <!-- achievement 2048 -->
-  <string name="achievement_2048" translatable="false">CgkIrrqv64sDEAIQCg</string>
-  <!-- achievement 4096 -->
-  <string name="achievement_4096" translatable="false">CgkIrrqv64sDEAIQCw</string>
-  <!-- achievement 8192 -->
-  <string name="achievement_8192" translatable="false">CgkIrrqv64sDEAIQDA</string>
-  <!-- leaderboard 4x4 -->
-  <string name="leaderboard_4x4" translatable="false">CgkIrrqv64sDEAIQAQ</string>
-  <!-- leaderboard 5x5 -->
-  <string name="leaderboard_5x5" translatable="false">CgkIrrqv64sDEAIQAg</string>
-  <!-- leaderboard 6x6 -->
-  <string name="leaderboard_6x6" translatable="false">CgkIrrqv64sDEAIQAw</string>
+  <string name="achievement_32" translatable="false">CgkImN6t8_MJEAIQAQ</string>
+  <!--achievement 64-->
+  <string name="achievement_64" translatable="false">CgkImN6t8_MJEAIQAg</string>
+  <!--achievement 128-->
+  <string name="achievement_128" translatable="false">CgkImN6t8_MJEAIQAw</string>
+  <!--achievement 256-->
+  <string name="achievement_256" translatable="false">CgkImN6t8_MJEAIQBA</string>
+  <!--achievement 512-->
+  <string name="achievement_512" translatable="false">CgkImN6t8_MJEAIQBQ</string>
+  <!--achievement 1024-->
+  <string name="achievement_1024" translatable="false">CgkImN6t8_MJEAIQBg</string>
+  <!--achievement 2048-->
+  <string name="achievement_2048" translatable="false">CgkImN6t8_MJEAIQBw</string>
+  <!--achievement 4096-->
+  <string name="achievement_4096" translatable="false">CgkImN6t8_MJEAIQCA</string>
+  <!--achievement 8192-->
+  <string name="achievement_8192" translatable="false">CgkImN6t8_MJEAIQCQ</string>
+  <!--leaderboard 4x4-->
+  <string name="leaderboard_4x4" translatable="false">CgkImN6t8_MJEAIQCg</string>
+  <!--leaderboard 5x5-->
+  <string name="leaderboard_5x5" translatable="false">CgkImN6t8_MJEAIQCw</string>
+  <!--leaderboard 6x6-->
+  <string name="leaderboard_6x6" translatable="false">CgkImN6t8_MJEAIQDA</string>
 </resources>

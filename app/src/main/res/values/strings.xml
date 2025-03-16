@@ -18,7 +18,7 @@
     <string name="reset_dialog_message">Are you sure you wish to reset the game?</string>
 
     <!-- Share Intro -->
-    <string name="get_from_bazaar">Get 2048 on Cafe Bazaar</string>
+    <string name="get_from_playstore">Checkout 2048 on Google Play</string>
     <string name="share_title">Share 2048 using</string>
 
     <!-- Trash -->
@@ -66,7 +66,7 @@
     <!-- Contact with Email -->
     <string name="email_client_error">There is no email client installed!</string>
     <string name="email_subject">2048 support</string>
-    <string name="email_support_address" translatable="false">gameditors.corp@gmail.com</string>
+    <string name="email_support_address" translatable="false">support@azurenight.com</string>
     <string name="email_send_title">Send Email...</string>
 
     <string name="saved">All information saved</string>

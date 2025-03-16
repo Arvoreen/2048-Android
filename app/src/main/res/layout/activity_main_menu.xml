@@ -128,24 +128,6 @@
             app:srcCompat="@drawable/ic_email" />
 
         <ImageView
-            android:id="@+id/btn_social_instagram"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:onClick="onButtonsClick"
-            app:srcCompat="@drawable/ic_instagram" />
-
-        <ImageView
-            android:id="@+id/btn_more_games"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:onClick="onButtonsClick"
-            app:srcCompat="@drawable/ic_moregames" />
-
-        <ImageView
             android:id="@+id/btn_rate"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

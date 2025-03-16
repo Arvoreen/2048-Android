@@ -1,16 +1,17 @@
 plugins {
     id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
-    namespace "com.azurenight.a2048"
+    namespace "com.azurenight.g2048"
     compileSdk 35
     defaultConfig {
-        applicationId "com.azurenight.a2048"
+        applicationId 'com.azurenight.g2048'
         minSdk 26
         targetSdk 35
-        versionCode 33
-        versionName "2.6.1"
+        versionCode 34
+        versionName '1.0'
     }
     buildTypes {
         release {
@@ -26,6 +27,9 @@ android {
         abortOnError false
     }
     buildToolsVersion '35.0.1'
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
@@ -35,6 +39,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
     implementation 'com.google.android.gms:play-services-games-v2:20.1.2'
     implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.core:core-ktx:1.15.0'
 }
 java {
     toolchain {
