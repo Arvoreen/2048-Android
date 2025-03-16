@@ -1,8 +1,9 @@
-package com.gameditors.a2048;
+package com.azurenight.a2048;
+
+import static android.provider.Settings.System.getString;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,27 +12,23 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
+
 import android.os.Bundle;
-import android.support.v7.widget.PopupMenu;
-import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.games.AchievementsClient;
 import com.google.android.gms.games.EventsClient;
-import com.google.android.gms.games.Games;
+import com.google.android.gms.games.GamesSignInClient;
 import com.google.android.gms.games.LeaderboardsClient;
+import com.google.android.gms.games.PlayGames;
 import com.google.android.gms.games.Player;
 import com.google.android.gms.games.PlayersClient;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,11 +36,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
-import org.json.JSONObject;
-
-import ir.adad.ad.AdadAdListener;
-import ir.adad.banner.AdadBannerAd;
-import ir.adad.core.Adad;
 
 
 public class MainMenuActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener
@@ -57,7 +49,7 @@ public class MainMenuActivity extends AppCompatActivity implements PopupMenu.OnM
     public static int mBackgroundColor = 0;
 
     // Client used to sign in with Google APIs
-    public GoogleSignInClient mGoogleSignInClient;
+    public GamesSignInClient mGoogleSignInClient;
 
     // Client variables
     public AchievementsClient mAchievementsClient;
@@ -90,36 +82,26 @@ public class MainMenuActivity extends AppCompatActivity implements PopupMenu.OnM
         ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 
-        if(activeNetwork != null && activeNetwork.isConnectedOrConnecting())
-        {
-            Adad.initialize("0fb16c39-0c78-408f-985e-917f3a3d6972");
-
-            ((AdadBannerAd)findViewById(R.id.banner_ad_view)).setAdListener(new AdadAdListener()
-            {
-                @Override
-                public void onLoaded() { }
-
-                @Override
-                public void onShowed() { }
-
-                @Override
-                public void onActionOccurred(int code) { }
-
-                @Override
-                public void onError(int code, String message) { }
-
-                @Override
-                public void onClosed() { }
-            });
-        }
-
         // Create the client used to sign in to Google services.
-        mGoogleSignInClient = GoogleSignIn.getClient(this,
-                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).build());
-
-        if(!isSignedIn())
-            startSignInIntent();
+        mGoogleSignInClient = PlayGames.getGamesSignInClient(this);
     }
+
+    private void signInSilently() {
+        mGoogleSignInClient.isAuthenticated().addOnCompleteListener(isAuthenticatedTask -> {
+            boolean isAuthenticated =
+                    (isAuthenticatedTask.isSuccessful() &&
+                            isAuthenticatedTask.getResult().isAuthenticated());
+            if (isAuthenticated) {
+                // Continue with Play Games Services
+            } else {
+                // If authentication fails, either disable Play Games Services
+                // integration or
+                // display a login button to prompt players to sign in.
+                // Use`gamesSignInClient.signIn()` when the login button is clicked.
+            }
+        });
+    }
+
 
     @Override
     public boolean onMenuItemClick(MenuItem item)
@@ -131,7 +113,6 @@ public class MainMenuActivity extends AppCompatActivity implements PopupMenu.OnM
                 startActivity(new Intent(MainMenuActivity.this, ColorPickerActivity.class));
                 break;
             case R.id.settings_sign_out:
-                signOut();
                 break;
         }
         return false;
@@ -176,10 +157,6 @@ public class MainMenuActivity extends AppCompatActivity implements PopupMenu.OnM
                 StartGame(6);
                 break;
             case R.id.btn_show_achievements:
-                if(!isSignedIn())
-                    startSignInIntent();
-                else
-                {
                     try
                     {
                         onShowAchievementsRequested();
@@ -188,13 +165,8 @@ public class MainMenuActivity extends AppCompatActivity implements PopupMenu.OnM
                     {
                         Toast.makeText(this, getString(R.string.try_again), Toast.LENGTH_SHORT).show();
                     }
-                }
                 break;
             case R.id.btn_show_leaderboards:
-                if(!isSignedIn())
-                    startSignInIntent();
-                else
-                {
                     try
                     {
                         onShowLeaderboardsRequested();
@@ -203,7 +175,6 @@ public class MainMenuActivity extends AppCompatActivity implements PopupMenu.OnM
                     {
                         Toast.makeText(this, getString(R.string.try_again), Toast.LENGTH_SHORT).show();
                     }
-                }
                 break;
             case R.id.btn_share:
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
@@ -227,7 +198,7 @@ public class MainMenuActivity extends AppCompatActivity implements PopupMenu.OnM
                 break;
             case R.id.btn_rate:
                 Intent bazaarIntent = new Intent(Intent.ACTION_EDIT);
-                bazaarIntent.setData(Uri.parse("bazaar://details?id=com.gameditors.a2048"));
+                bazaarIntent.setData(Uri.parse("bazaar://details?id=com.azurenight.a2048"));
                 bazaarIntent.setPackage("com.farsitel.bazaar");
 
                 try
@@ -332,38 +303,24 @@ public class MainMenuActivity extends AppCompatActivity implements PopupMenu.OnM
         startActivity(new Intent(MainMenuActivity.this, MainActivity.class));
     }
 
-    public void signInSilently()
-    {
-        mGoogleSignInClient.silentSignIn().addOnCompleteListener(this, new OnCompleteListener<GoogleSignInAccount>()
-        {
-            @Override
-            public void onComplete(@NonNull Task<GoogleSignInAccount> task)
-            {
-                if (task.isSuccessful())
-                    onConnected(task.getResult());
-                else
-                    onDisconnected();
+    private void checkIfAutomaticallySignedIn() {
+        mGoogleSignInClient.isAuthenticated().addOnCompleteListener(isAuthenticatedTask -> {
+            boolean isAuthenticated =
+                    (isAuthenticatedTask.isSuccessful() &&
+                            isAuthenticatedTask.getResult().isAuthenticated());
+
+            if (isAuthenticated) {
+                // Continue with Play Games Services
+                // If your game requires specific actions upon successful sign-in,
+                // you can add your custom logic here.
+                // For example, fetching player data or updating UI elements.
+            } else {
+                // Disable your integration with Play Games Services or show a
+                // login button to ask  players to sign-in. Clicking it should
+                // call GamesSignInClient.signIn().
             }
         });
     }
-
-    private void signOut()
-    {
-        if (!isSignedIn())
-            return;
-
-        mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>()
-        {
-            @Override
-            public void onComplete(@NonNull Task<Void> task)
-            {
-                boolean successful = task.isSuccessful();
-
-                onDisconnected();
-            }
-        });
-    }
-
     public void handleException(Exception e, String details)
     {
         int status = 0;
@@ -377,12 +334,12 @@ public class MainMenuActivity extends AppCompatActivity implements PopupMenu.OnM
         String message = getString(R.string.status_exception_error, details, status, e);
     }
 
-    public void onConnected(GoogleSignInAccount googleSignInAccount)
+    public void handleSignedIn()
     {
-        mAchievementsClient = Games.getAchievementsClient(this, googleSignInAccount);
-        mLeaderboardsClient = Games.getLeaderboardsClient(this, googleSignInAccount);
-        mEventsClient = Games.getEventsClient(this, googleSignInAccount);
-        mPlayersClient = Games.getPlayersClient(this, googleSignInAccount);
+        mAchievementsClient = PlayGames.getAchievementsClient(this);
+        mLeaderboardsClient = PlayGames.getLeaderboardsClient(this);
+        mEventsClient = PlayGames.getEventsClient(this);
+        mPlayersClient = PlayGames.getPlayersClient(this);
 
         // Set the greeting appropriately on main menu
         mPlayersClient.getCurrentPlayer().addOnCompleteListener(new OnCompleteListener<Player>()
@@ -400,23 +357,6 @@ public class MainMenuActivity extends AppCompatActivity implements PopupMenu.OnM
                 }
             }
         });
-    }
-
-    public void onDisconnected()
-    {
-        mAchievementsClient = null;
-        mLeaderboardsClient = null;
-        mPlayersClient = null;
-    }
-
-    private void startSignInIntent()
-    {
-        startActivityForResult(mGoogleSignInClient.getSignInIntent(), RC_SIGN_IN);
-    }
-
-    private boolean isSignedIn()
-    {
-        return GoogleSignIn.getLastSignedInAccount(this) != null;
     }
 
     public void onShowAchievementsRequested()
@@ -457,30 +397,4 @@ public class MainMenuActivity extends AppCompatActivity implements PopupMenu.OnM
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent)
-    {
-        super.onActivityResult(requestCode, resultCode, intent);
-        if (requestCode == RC_SIGN_IN)
-        {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(intent);
-
-            try
-            {
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                onConnected(account);
-            }
-            catch (ApiException apiException)
-            {
-                String message = apiException.getMessage();
-                if (message == null || message.isEmpty())
-                    message = getString(R.string.signin_other_error);
-
-                onDisconnected();
-
-                new AlertDialog.Builder(this).setMessage(message)
-                        .setNeutralButton(android.R.string.ok, null).show();
-            }
-        }
     }
-}

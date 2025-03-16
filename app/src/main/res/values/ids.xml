@@ -5,7 +5,7 @@ Save this file as res/values/games-ids.xml in your project.
 -->
 <resources>
   <!-- app_id -->
-  <string name="app_id" translatable="false">106257177902</string>
+  <string name="app_id" translatable="false">340349644568</string>
   <!-- package_name -->
   <string name="package_name" translatable="false">com.gameditors.a2048</string>
   <!-- achievement 32 -->

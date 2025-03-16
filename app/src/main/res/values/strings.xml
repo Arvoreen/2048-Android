@@ -9,6 +9,7 @@
     <string name="go_on">Tap to Continue</string>
     <string name="for_now">For now…</string>
     <string name="endless">"Endless" Mode</string>
+    <string translatable="false" name="game_services_project_id">340349644568</string>
 
     <!-- Confirmation dialog-->
     <string name="reset">Reset</string>

@@ -1,11 +1,9 @@
-package com.gameditors.a2048;
+package com.azurenight.a2048;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 
 class InputListener implements View.OnTouchListener
 {

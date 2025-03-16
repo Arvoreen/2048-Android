@@ -1,4 +1,4 @@
-package com.gameditors.a2048;
+package com.azurenight.a2048;
 
 import java.util.ArrayList;
 
