@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:orientation="vertical"
-    tools:context=".g2048.a2048.MainMenuActivity">
+    tools:context=".MainMenuActivity">
 
     <Button
         android:id="@+id/btn_start_4x4"

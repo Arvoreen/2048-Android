@@ -10,7 +10,7 @@ android {
         applicationId 'com.azurenight.g2048'
         minSdk 26
         targetSdk 35
-        versionCode 34
+        versionCode 100
         versionName '1.0'
     }
     buildTypes {
