@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">2048</string>
-    <string name="header">2048</string>
+    <string name="app_name">2 Squared</string>
+    <string name="header">2 Squared</string>
     <string name="high_score">HIGH SCORE</string>
     <string name="score">SCORE</string>
     <string name="you_win">You Win!</string>
@@ -9,7 +9,7 @@
     <string name="go_on">Tap to Continue</string>
     <string name="for_now">For now…</string>
     <string name="endless">"Endless" Mode</string>
-    <string translatable="false" name="game_services_project_id">340349644568</string>
+    <string name="game_services_project_id" translatable="false">340349644568</string>
 
     <!-- Confirmation dialog-->
     <string name="reset">Reset</string>
@@ -18,8 +18,8 @@
     <string name="reset_dialog_message">Are you sure you wish to reset the game?</string>
 
     <!-- Share Intro -->
-    <string name="get_from_playstore">Checkout 2048 on Google Play</string>
-    <string name="share_title">Share 2048 using</string>
+    <string name="get_from_playstore">Checkout 2 Squared on Google Play</string>
+    <string name="share_title">Share 2 Squared using</string>
 
     <!-- Trash -->
     <string name="reward_amount_error">Each set only has two extra chance!</string>
@@ -45,7 +45,7 @@
     <string name="instagram">Instagram</string>
     <string name="other_games">Other games</string>
     <string name="background_color">Background color</string>
-    <string name="rate_us">Rate 2048</string>
+    <string name="rate_us">Rate 2 Squared</string>
     <string name="share_2048">Share with friends</string>
     <string name="sign_out">Sign out</string>
     <string name="try_again">Try again a few seconds later!</string>
@@ -65,7 +65,7 @@
 
     <!-- Contact with Email -->
     <string name="email_client_error">There is no email client installed!</string>
-    <string name="email_subject">2048 support</string>
+    <string name="email_subject">2 Squared support</string>
     <string name="email_support_address" translatable="false">support@azurenight.com</string>
     <string name="email_send_title">Send Email...</string>
 

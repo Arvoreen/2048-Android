@@ -10,8 +10,8 @@ android {
         applicationId 'com.azurenight.g2048'
         minSdk 26
         targetSdk 35
-        versionCode 100
-        versionName '1.0'
+        versionCode 101
+        versionName '1.1'
     }
     buildTypes {
         release {
@@ -20,15 +20,12 @@ android {
         }
     }
     // This is important, it will run lint checks but won't abort build
-    lintOptions {
-        // checkReleaseBuilds false
-        // Or, if you prefer, you can continue to check for errors in release builds,
-        // but continue the build even when errors are found:
-        abortOnError false
-    }
     buildToolsVersion '35.0.1'
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    lint {
+        abortOnError false
     }
 }
 
